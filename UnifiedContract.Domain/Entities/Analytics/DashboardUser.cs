@@ -1,5 +1,6 @@
 using System;
 using UnifiedContract.Domain.Common;
+using UnifiedContract.Domain.Entities.Auth;
 
 namespace UnifiedContract.Domain.Entities.Analytics
 {

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnifiedContract.Domain.Common;
+using UnifiedContract.Domain.Entities.Auth; // Added this line to resolve 'User' type  
 
 namespace UnifiedContract.Domain.Entities.Analytics
 {

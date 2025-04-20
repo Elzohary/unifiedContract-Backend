@@ -10,7 +10,7 @@ namespace UnifiedContract.Domain.Interfaces.Repositories
     {
         Task<User> GetUserByEmailAsync(string email);
         Task<User> GetUserByUsernameAsync(string username);
-        Task<IEnumerable<User>> GetUsersByRoleAsync(UserRole role);
+        Task<IEnumerable<User>> GetUsersByRoleAsync(UnifiedContract.Domain.Enums.UserRole role);
         Task<bool> UserExistsAsync(string email);
         Task<bool> CheckPasswordAsync(User user, string password);
     }

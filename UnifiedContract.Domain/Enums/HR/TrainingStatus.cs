@@ -1,4 +1,4 @@
-namespace UnifiedContract.Domain.Enums
+namespace UnifiedContract.Domain.Enums.HR
 {
     public enum TrainingStatus
     {

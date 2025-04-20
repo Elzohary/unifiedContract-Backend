@@ -1,0 +1,5 @@
+F:\Zohary\Software Development\full-project\Backend\UnifiedContract.Domain\obj\Debug\net8.0\UnifiedContract.Domain.GeneratedMSBuildEditorConfig.editorconfig
+F:\Zohary\Software Development\full-project\Backend\UnifiedContract.Domain\obj\Debug\net8.0\UnifiedContract.Domain.AssemblyInfoInputs.cache
+F:\Zohary\Software Development\full-project\Backend\UnifiedContract.Domain\obj\Debug\net8.0\UnifiedContract.Domain.AssemblyInfo.cs
+F:\Zohary\Software Development\full-project\Backend\UnifiedContract.Domain\obj\Debug\net8.0\UnifiedContract.Domain.csproj.CoreCompileInputs.cache
+F:\Zohary\Software Development\full-project\Backend\UnifiedContract.Domain\obj\Debug\net8.0\UnifiedContract.Domain.sourcelink.json

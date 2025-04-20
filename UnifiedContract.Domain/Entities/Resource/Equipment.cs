@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
 using UnifiedContract.Domain.Common;
-using UnifiedContract.Domain.Enums;
+using UnifiedContract.Domain.Entities.HR;
+using UnifiedContract.Domain.Entities.Resource.Lookups;
 
 namespace UnifiedContract.Domain.Entities.Resource
 {
@@ -18,14 +19,19 @@ namespace UnifiedContract.Domain.Entities.Resource
         public DateTime PurchaseDate { get; set; }
         public DateTime? LastMaintenanceDate { get; set; }
         public DateTime? NextMaintenanceDate { get; set; }
-        public string Status { get; set; } // Available, InUse, UnderMaintenance, Damaged, Retired
         public string CurrentLocation { get; set; }
         public string Description { get; set; }
         public string ImageUrl { get; set; }
+        
+        // Foreign keys to lookup tables
+        public Guid EquipmentStatusId { get; set; }
         public Guid? CurrentOperatorId { get; set; }
+        public Guid? SupplierId { get; set; }
         
         // Navigation properties
+        public virtual EquipmentStatus Status { get; set; }
         public virtual Employee CurrentOperator { get; set; }
+        public virtual Supplier Supplier { get; set; }
         public virtual ICollection<EquipmentAssignment> Assignments { get; set; }
         public virtual ICollection<EquipmentMaintenance> MaintenanceRecords { get; set; }
         

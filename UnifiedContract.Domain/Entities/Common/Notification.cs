@@ -1,7 +1,7 @@
 using System;
 using UnifiedContract.Domain.Common;
 using UnifiedContract.Domain.Enums;
-
+using UnifiedContract.Domain.Entities.Auth;
 namespace UnifiedContract.Domain.Entities.Common
 {
     public class Notification : BaseEntity

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnifiedContract.Domain.Common;
 using UnifiedContract.Domain.ValueObjects;
-
+using UnifiedContract.Domain.Entities.Auth;
 namespace UnifiedContract.Domain.Entities.Client
 {
     public class Client : BaseEntity
