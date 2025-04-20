@@ -25,6 +25,7 @@ namespace UnifiedContract.Domain.Entities.Auth
             SeedMaintenanceTypes(modelBuilder);
             SeedMaintenanceStatuses(modelBuilder);
             SeedMaterialTypes(modelBuilder);
+            SeedSupplierCategories(modelBuilder);
         }
 
         private static void SeedWorkOrderStatuses(ModelBuilder modelBuilder)
@@ -124,6 +125,17 @@ namespace UnifiedContract.Domain.Entities.Auth
             );
         }
 
+        private static void SeedSupplierCategories(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<SupplierCategory>().HasData(
+                CreateLookup<SupplierCategory>(1, "EQUIP", "Equipment", "Suppliers for equipment and tools", true, 30, true, "#0000FF"),
+                CreateLookup<SupplierCategory>(2, "MATERIAL", "Materials", "Suppliers for construction materials", true, 45, false, "#8B4513"),
+                CreateLookup<SupplierCategory>(3, "SERVICE", "Services", "Suppliers for contracted services", false, 15, true, "#008000"),
+                CreateLookup<SupplierCategory>(4, "CONSULTANT", "Consultants", "Consulting firms and professionals", false, 30, true, "#800080"),
+                CreateLookup<SupplierCategory>(5, "SUBCONTRACTOR", "Subcontractors", "Specialized subcontractors", true, 30, true, "#FF8C00")
+            );
+        }
+
         #region Helper Methods for Creating Lookup Entities
 
         private static T CreateLookup<T>(int id, string code, string name, string description, params object[] specificProps) where T : Lookup, new()
@@ -200,6 +212,13 @@ namespace UnifiedContract.Domain.Entities.Auth
                 ((MaterialType)(object)lookup).IsReceivable = (bool)specificProps[1];
                 ((MaterialType)(object)lookup).RequiresTracking = (bool)specificProps[2];
                 if (specificProps.Length > 3) ((MaterialType)(object)lookup).HasCost = (bool)specificProps[3];
+            }
+            else if (typeof(T) == typeof(SupplierCategory) && specificProps.Length >= 3)
+            {
+                ((SupplierCategory)(object)lookup).RequiresVatNumber = (bool)specificProps[0];
+                ((SupplierCategory)(object)lookup).DefaultCreditDays = (decimal)specificProps[1];
+                ((SupplierCategory)(object)lookup).RequiresContractReview = (bool)specificProps[2];
+                if (specificProps.Length > 3) ((SupplierCategory)(object)lookup).ColorCode = (string)specificProps[3];
             }
 
             return lookup;

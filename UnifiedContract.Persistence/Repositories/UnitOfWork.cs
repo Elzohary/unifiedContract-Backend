@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Threading.Tasks;
+using UnifiedContract.Domain.Common;
 using UnifiedContract.Domain.Interfaces.Repositories;
 
 namespace UnifiedContract.Persistence.Repositories
@@ -8,7 +9,7 @@ namespace UnifiedContract.Persistence.Repositories
     public class UnitOfWork : IUnitOfWork
     {
         private readonly UnifiedContractDbContext _context;
-        private Hashtable _repositories;
+        private Hashtable _repositories = new Hashtable();
         private bool _disposed;
 
         public UnitOfWork(UnifiedContractDbContext context)
@@ -16,11 +17,8 @@ namespace UnifiedContract.Persistence.Repositories
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        public IRepository<TEntity> Repository<TEntity>() where TEntity : class
+        public IRepository<TEntity> Repository<TEntity>() where TEntity : BaseEntity
         {
-            if (_repositories == null)
-                _repositories = new Hashtable();
-
             var type = typeof(TEntity).Name;
 
             if (!_repositories.ContainsKey(type))
@@ -30,7 +28,7 @@ namespace UnifiedContract.Persistence.Repositories
                 _repositories.Add(type, repositoryInstance);
             }
 
-            return (IRepository<TEntity>)_repositories[type];
+            return (IRepository<TEntity>)_repositories[type]!;
         }
 
         public Task<int> CompleteAsync()
