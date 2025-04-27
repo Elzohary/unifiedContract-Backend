@@ -11,16 +11,16 @@ namespace UnifiedContract.Domain.Entities.WorkOrder
     {
         public string WorkOrderNumber { get; set; }
         public string InternalOrderNumber { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
+        public string? Title { get; set; }
+        public string? Description { get; set; }
         public string Location { get; set; }
-        public string Category { get; set; }
+        public string? Category { get; set; }
         public decimal CompletionPercentage { get; set; }
         public DateTime ReceivedDate { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime DueDate { get; set; }
+        public DateTime? StartDate { get; set; }
+        public DateTime? DueDate { get; set; }
         public DateTime? TargetEndDate { get; set; }
-        public decimal EstimatedCost { get; set; }
+        public decimal? EstimatedCost { get; set; }
         
         // Foreign keys to lookup tables
         public Guid WorkOrderStatusId { get; set; }
