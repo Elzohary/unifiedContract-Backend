@@ -17,32 +17,40 @@ namespace UnifiedContract.Persistence.Configurations.Resource
             builder.Property(e => e.Name)
                 .IsRequired()
                 .HasMaxLength(100);
-                
-            builder.Property(e => e.Code)
+            builder.Property(e => e.CompanyNumber)
                 .IsRequired()
                 .HasMaxLength(50);
-                
             builder.Property(e => e.Type)
                 .IsRequired()
                 .HasMaxLength(50);
-                
             builder.Property(e => e.Model)
                 .HasMaxLength(100);
-                
             builder.Property(e => e.SerialNumber)
                 .HasMaxLength(100);
-                
+            builder.Property(e => e.Manufacturer)
+                .HasMaxLength(100);
+            builder.Property(e => e.DailyCost)
+                .HasColumnType("decimal(18,2)");
+            builder.Property(e => e.Currency)
+                .HasMaxLength(3)
+                .HasDefaultValue("SAR");
+            builder.Property(e => e.PurchaseDate)
+                .IsRequired();
+            builder.Property(e => e.CurrentLocation)
+                .HasMaxLength(200);
+            builder.Property(e => e.Description)
+                .HasMaxLength(1000);
+            builder.Property(e => e.ImageUrl)
+                .HasMaxLength(500);
             builder.Property(e => e.Status)
                 .IsRequired()
                 .HasConversion<string>()
                 .HasMaxLength(20);
-                
             builder.Property(e => e.Condition)
                 .HasMaxLength(50);
-                
             builder.Property(e => e.Notes)
                 .HasMaxLength(1000);
-                
+            
             // Value object mapping for PurchaseInfo
             builder.OwnsOne(e => e.PurchaseInfo, purchase =>
             {
@@ -63,15 +71,15 @@ namespace UnifiedContract.Persistence.Configurations.Resource
             });
             
             // Indexes
-            builder.HasIndex(e => e.Code).IsUnique();
+            builder.HasIndex(e => e.CompanyNumber).IsUnique();
             builder.HasIndex(e => e.Name);
             builder.HasIndex(e => e.Type);
-            builder.HasIndex(e => e.Status);
             builder.HasIndex(e => e.SerialNumber);
+            builder.HasIndex(e => e.Status);
             builder.HasIndex(e => new { e.Status, e.Type });
             
             // Relationships
-            builder.HasMany(e => e.MaintenanceHistory)
+            builder.HasMany(e => e.MaintenanceRecords)
                 .WithOne(m => m.Equipment)
                 .HasForeignKey(m => m.EquipmentId)
                 .OnDelete(DeleteBehavior.Cascade);

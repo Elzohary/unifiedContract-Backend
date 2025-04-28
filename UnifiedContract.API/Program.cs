@@ -49,8 +49,18 @@ builder.Services.AddAuthentication(options =>
         ValidateIssuerSigningKey = true,
         ValidIssuer = builder.Configuration["JwtSettings:Issuer"],
         ValidAudience = builder.Configuration["JwtSettings:Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:Key"]))
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:SecretKey"]))
     };
+});
+
+// Add Health Checks
+builder.Services.AddHealthChecks()
+    .AddDbContextCheck<UnifiedContractDbContext>("Database");
+
+// Add Response Compression
+builder.Services.AddResponseCompression(options =>
+{
+    options.EnableForHttps = true;
 });
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -107,6 +117,12 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+// Use Response Compression
+app.UseResponseCompression();
+
+// Use Request Logging
+app.UseMiddleware<RequestLoggingMiddleware>();
+
 app.UseCors("AllowAll");
 
 app.UseAuthentication();
@@ -114,6 +130,9 @@ app.UseAuthorization();
 
 // Use custom exception handling middleware
 app.UseMiddleware<ExceptionHandlingMiddleware>();
+
+// Map Health Checks
+app.MapHealthChecks("/health");
 
 app.MapControllers();
 

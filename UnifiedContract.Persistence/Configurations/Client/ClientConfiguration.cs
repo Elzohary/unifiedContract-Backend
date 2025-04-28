@@ -6,9 +6,9 @@ using UnifiedContract.Persistence.Configurations.Common;
 
 namespace UnifiedContract.Persistence.Configurations.Client
 {
-    public class ClientConfiguration : BaseEntityConfiguration<Client>
+    public class ClientConfiguration : BaseEntityConfiguration<UnifiedContract.Domain.Entities.Client.Client>
     {
-        protected override void ConfigureEntity(EntityTypeBuilder<Client> builder)
+        protected override void ConfigureEntity(EntityTypeBuilder<UnifiedContract.Domain.Entities.Client.Client> builder)
         {
             // Table name
             builder.ToTable("Client", "Client");

@@ -18,7 +18,7 @@ namespace UnifiedContract.Domain.Entities.Document
         public Guid? LastModifiedById { get; set; }
         
         // Navigation properties
-        public virtual User CreatedBy { get; set; }
-        public virtual User LastModifiedBy { get; set; }
+        public virtual User CreatedByUser { get; set; }
+        public virtual User LastModifiedByUser { get; set; }
     }
 } 

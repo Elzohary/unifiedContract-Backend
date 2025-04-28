@@ -13,49 +13,35 @@ namespace UnifiedContract.Persistence.Configurations.Resource
             builder.ToTable("EquipmentMaintenance", "Resource");
             
             // Properties
-            builder.Property(m => m.MaintenanceDate)
+            builder.Property(m => m.ScheduledDate)
                 .IsRequired();
-                
-            builder.Property(m => m.MaintenanceType)
-                .IsRequired()
-                .HasConversion<string>()
-                .HasMaxLength(50);
-                
+            builder.Property(m => m.CompletedDate);
             builder.Property(m => m.Description)
                 .IsRequired()
                 .HasMaxLength(1000);
-                
             builder.Property(m => m.Cost)
                 .HasColumnType("decimal(18,2)");
-                
             builder.Property(m => m.Currency)
                 .HasMaxLength(3)
                 .HasDefaultValue("SAR");
-                
-            builder.Property(m => m.PerformedBy)
-                .HasMaxLength(100);
-                
-            builder.Property(m => m.NextMaintenanceDate);
-                
-            builder.Property(m => m.Status)
-                .IsRequired()
-                .HasConversion<string>()
-                .HasMaxLength(20);
-                
             builder.Property(m => m.Notes)
                 .HasMaxLength(1000);
+            builder.Property(m => m.ServiceProvider)
+                .HasMaxLength(100);
+            builder.Property(m => m.InvoiceNumber)
+                .HasMaxLength(100);
+            builder.Property(m => m.DocumentUrl)
+                .HasMaxLength(500);
             
             // Indexes
             builder.HasIndex(m => m.EquipmentId);
-            builder.HasIndex(m => m.MaintenanceDate);
-            builder.HasIndex(m => m.MaintenanceType);
-            builder.HasIndex(m => m.Status);
-            builder.HasIndex(m => m.NextMaintenanceDate);
-            builder.HasIndex(m => new { m.EquipmentId, m.MaintenanceDate });
+            builder.HasIndex(m => m.ScheduledDate);
+            builder.HasIndex(m => m.CompletedDate);
+            builder.HasIndex(m => new { m.EquipmentId, m.ScheduledDate });
             
             // Relationships
             builder.HasOne(m => m.Equipment)
-                .WithMany(e => e.MaintenanceHistory)
+                .WithMany(e => e.MaintenanceRecords)
                 .HasForeignKey(m => m.EquipmentId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
