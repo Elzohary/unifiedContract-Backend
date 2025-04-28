@@ -21,17 +21,31 @@ namespace UnifiedContract.Persistence.Configurations.Common
                 .IsRequired()
                 .HasMaxLength(100);
                 
+            builder.Property(e => e.FileSize)
+                .IsRequired();
+                
             builder.Property(e => e.Url)
                 .IsRequired()
                 .HasMaxLength(1000);
                 
             builder.Property(e => e.Description)
                 .HasMaxLength(500);
+                
+            builder.Property(e => e.UploadDate)
+                .IsRequired()
+                .HasDefaultValueSql("GETDATE()");
             
             // Indexes
             builder.HasIndex(e => e.UploadedById);
             builder.HasIndex(e => e.UploadDate);
             builder.HasIndex(e => e.FileType);
+            builder.HasIndex(e => new { e.UploadDate, e.UploadedById });
+            
+            // Relationships
+            builder.HasOne<User>(e => e.UploadedBy)
+                .WithMany()
+                .HasForeignKey(e => e.UploadedById)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 } 

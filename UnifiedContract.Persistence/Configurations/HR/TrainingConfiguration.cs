@@ -41,6 +41,18 @@ namespace UnifiedContract.Persistence.Configurations.HR
             builder.Property(t => t.Feedback)
                 .HasMaxLength(1000);
             
+            // Add missing property configurations
+            builder.Property(t => t.StartDate)
+                .IsRequired();
+
+            builder.Property(t => t.EndDate)
+                .IsRequired();
+
+            builder.Property(t => t.DurationHours)
+                .IsRequired();
+
+            builder.Property(t => t.Score);
+            
             // Indexes
             builder.HasIndex(t => t.EmployeeId);
             builder.HasIndex(t => t.Title);
@@ -48,6 +60,9 @@ namespace UnifiedContract.Persistence.Configurations.HR
             builder.HasIndex(t => t.StartDate);
             builder.HasIndex(t => t.EndDate);
             builder.HasIndex(t => t.Status);
+            builder.HasIndex(t => new { t.StartDate, t.EndDate });
+            builder.HasIndex(t => new { t.EmployeeId, t.Status });
+            builder.HasIndex(t => t.Score);
             
             // Relationships
             builder.HasOne(t => t.Employee)

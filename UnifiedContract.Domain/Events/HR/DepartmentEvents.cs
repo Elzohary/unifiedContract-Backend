@@ -82,4 +82,44 @@ namespace UnifiedContract.Domain.Events.HR
             Department = department;
         }
     }
+
+    public class DepartmentDeletedEvent : DomainEvent
+    {
+        public Department Department { get; }
+        public string DeletionReason { get; }
+
+        public DepartmentDeletedEvent(Department department, string deletionReason)
+        {
+            Department = department;
+            DeletionReason = deletionReason;
+        }
+    }
+
+    public class DepartmentMergedEvent : DomainEvent
+    {
+        public Department SourceDepartment { get; }
+        public Department TargetDepartment { get; }
+        public string MergeReason { get; }
+
+        public DepartmentMergedEvent(Department sourceDepartment, Department targetDepartment, string mergeReason)
+        {
+            SourceDepartment = sourceDepartment;
+            TargetDepartment = targetDepartment;
+            MergeReason = mergeReason;
+        }
+    }
+
+    public class DepartmentSplitEvent : DomainEvent
+    {
+        public Department OriginalDepartment { get; }
+        public Department NewDepartment { get; }
+        public string SplitReason { get; }
+
+        public DepartmentSplitEvent(Department originalDepartment, Department newDepartment, string splitReason)
+        {
+            OriginalDepartment = originalDepartment;
+            NewDepartment = newDepartment;
+            SplitReason = splitReason;
+        }
+    }
 } 

@@ -42,4 +42,46 @@ namespace UnifiedContract.Domain.Events.HR
             WorkExperience = workExperience;
         }
     }
+
+    public class WorkExperienceDeletedEvent : DomainEvent
+    {
+        public WorkExperience WorkExperience { get; }
+        public string DeletionReason { get; }
+
+        public WorkExperienceDeletedEvent(WorkExperience workExperience, string deletionReason)
+        {
+            WorkExperience = workExperience;
+            DeletionReason = deletionReason;
+        }
+    }
+
+    public class WorkExperienceVerifiedEvent : DomainEvent
+    {
+        public WorkExperience WorkExperience { get; }
+        public string VerifiedBy { get; }
+        public DateTime VerificationDate { get; }
+
+        public WorkExperienceVerifiedEvent(WorkExperience workExperience, string verifiedBy, DateTime verificationDate)
+        {
+            WorkExperience = workExperience;
+            VerifiedBy = verifiedBy;
+            VerificationDate = verificationDate;
+        }
+    }
+
+    public class WorkExperienceRejectedEvent : DomainEvent
+    {
+        public WorkExperience WorkExperience { get; }
+        public string RejectedBy { get; }
+        public string RejectionReason { get; }
+        public DateTime RejectionDate { get; }
+
+        public WorkExperienceRejectedEvent(WorkExperience workExperience, string rejectedBy, string rejectionReason, DateTime rejectionDate)
+        {
+            WorkExperience = workExperience;
+            RejectedBy = rejectedBy;
+            RejectionReason = rejectionReason;
+            RejectionDate = rejectionDate;
+        }
+    }
 } 

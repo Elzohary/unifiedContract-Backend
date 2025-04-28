@@ -2,7 +2,7 @@ using System;
 using UnifiedContract.Domain.Common;
 using UnifiedContract.Domain.Entities.Common;
 
-namespace UnifiedContract.Domain.Events.Resource
+namespace UnifiedContract.Domain.Events.Common
 {
     public class LookupUpdatedEvent : DomainEvent
     {

@@ -38,8 +38,17 @@ namespace UnifiedContract.Persistence.Configurations.HR
                 .HasMaxLength(500);
                 
             builder.Property(l => l.TotalDays)
+                .IsRequired()
+                .HasDefaultValue(0);
+
+            builder.Property(l => l.StartDate)
                 .IsRequired();
-            
+
+            builder.Property(l => l.EndDate)
+                .IsRequired();
+
+            builder.Property(l => l.ApprovedDate);
+
             // Indexes
             builder.HasIndex(l => l.EmployeeId);
             builder.HasIndex(l => l.Type);
@@ -47,6 +56,8 @@ namespace UnifiedContract.Persistence.Configurations.HR
             builder.HasIndex(l => l.StartDate);
             builder.HasIndex(l => l.EndDate);
             builder.HasIndex(l => l.ApprovedById);
+            builder.HasIndex(l => new { l.StartDate, l.EndDate });
+            builder.HasIndex(l => new { l.EmployeeId, l.Status });
             
             // Relationships
             builder.HasOne(l => l.Employee)

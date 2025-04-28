@@ -37,10 +37,18 @@ namespace UnifiedContract.Persistence.Configurations.Auth
             builder.Property(u => u.IsActive)
                 .IsRequired()
                 .HasDefaultValue(true);
+                
+            builder.Property(u => u.IsEmployee)
+                .IsRequired()
+                .HasDefaultValue(false);
+                
+            builder.Property(u => u.EmployeeId);
             
             // Indexes
             builder.HasIndex(u => u.UserName).IsUnique();
             builder.HasIndex(u => u.Email).IsUnique();
+            builder.HasIndex(u => u.EmployeeId);
+            builder.HasIndex(u => u.IsEmployee);
             
             // Relationships
             builder.HasOne<Employee>()

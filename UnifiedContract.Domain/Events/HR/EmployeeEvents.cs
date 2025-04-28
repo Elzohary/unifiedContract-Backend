@@ -62,4 +62,44 @@ namespace UnifiedContract.Domain.Events.HR
             Employee = employee;
         }
     }
+
+    public class EmployeeDeletedEvent : DomainEvent
+    {
+        public Employee Employee { get; }
+        public string DeletionReason { get; }
+
+        public EmployeeDeletedEvent(Employee employee, string deletionReason)
+        {
+            Employee = employee;
+            DeletionReason = deletionReason;
+        }
+    }
+
+    public class EmployeeStatusChangedEvent : DomainEvent
+    {
+        public Employee Employee { get; }
+        public string PreviousStatus { get; }
+        public string NewStatus { get; }
+
+        public EmployeeStatusChangedEvent(Employee employee, string previousStatus, string newStatus)
+        {
+            Employee = employee;
+            PreviousStatus = previousStatus;
+            NewStatus = newStatus;
+        }
+    }
+
+    public class EmployeeTerminatedEvent : DomainEvent
+    {
+        public Employee Employee { get; }
+        public DateTime TerminationDate { get; }
+        public string TerminationReason { get; }
+
+        public EmployeeTerminatedEvent(Employee employee, DateTime terminationDate, string terminationReason)
+        {
+            Employee = employee;
+            TerminationDate = terminationDate;
+            TerminationReason = terminationReason;
+        }
+    }
 } 

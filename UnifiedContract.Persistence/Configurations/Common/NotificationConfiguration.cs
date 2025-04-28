@@ -21,6 +21,11 @@ namespace UnifiedContract.Persistence.Configurations.Common
                 .IsRequired()
                 .HasMaxLength(1000);
                 
+            builder.Property(e => e.Type)
+                .IsRequired()
+                .HasConversion<string>()
+                .HasMaxLength(20);
+                
             builder.Property(e => e.EntityType)
                 .HasMaxLength(100);
                 
@@ -30,12 +35,15 @@ namespace UnifiedContract.Persistence.Configurations.Common
             builder.Property(e => e.IsRead)
                 .IsRequired()
                 .HasDefaultValue(false);
+                
+            builder.Property(e => e.ReadDate);
             
             // Indexes
             builder.HasIndex(e => e.UserId);
             builder.HasIndex(e => e.IsRead);
             builder.HasIndex(e => e.CreatedDate);
             builder.HasIndex(e => new { e.UserId, e.IsRead });
+            builder.HasIndex(e => new { e.EntityId, e.EntityType });
             
             // Relationships
             builder.HasOne<User>(e => e.User)

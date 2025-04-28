@@ -54,6 +54,8 @@ namespace UnifiedContract.Persistence.Configurations.HR
             builder.HasIndex(e => e.Name);
             builder.HasIndex(e => e.Relationship);
             builder.HasIndex(e => e.IsPrimaryContact);
+            builder.HasIndex(e => new { e.EmployeeId, e.IsPrimaryContact });
+            builder.HasIndex(e => new { e.EmployeeId, e.Name }).IsUnique();
             
             // Relationships
             builder.HasOne(e => e.Employee)

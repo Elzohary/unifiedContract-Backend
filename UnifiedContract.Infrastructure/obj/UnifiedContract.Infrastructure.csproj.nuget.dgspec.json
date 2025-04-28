@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Zohary\\Software Development\\full-project\\Backend\\UnifiedContract.Infrastructure\\UnifiedContract.Infrastructure.csproj": {}
+    "D:\\Elzohary\\IT\\2025 Software Projects\\unifiedContract - Full Project\\unifiedContract-Backend\\UnifiedContract.Infrastructure\\UnifiedContract.Infrastructure.csproj": {}
   },
   "projects": {
-    "F:\\Zohary\\Software Development\\full-project\\Backend\\UnifiedContract.Application\\UnifiedContract.Application.csproj": {
+    "D:\\Elzohary\\IT\\2025 Software Projects\\unifiedContract - Full Project\\unifiedContract-Backend\\UnifiedContract.Application\\UnifiedContract.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Zohary\\Software Development\\full-project\\Backend\\UnifiedContract.Application\\UnifiedContract.Application.csproj",
+        "projectUniqueName": "D:\\Elzohary\\IT\\2025 Software Projects\\unifiedContract - Full Project\\unifiedContract-Backend\\UnifiedContract.Application\\UnifiedContract.Application.csproj",
         "projectName": "UnifiedContract.Application",
-        "projectPath": "F:\\Zohary\\Software Development\\full-project\\Backend\\UnifiedContract.Application\\UnifiedContract.Application.csproj",
-        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "F:\\Zohary\\Software Development\\full-project\\Backend\\UnifiedContract.Application\\obj\\",
+        "projectPath": "D:\\Elzohary\\IT\\2025 Software Projects\\unifiedContract - Full Project\\unifiedContract-Backend\\UnifiedContract.Application\\UnifiedContract.Application.csproj",
+        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
+        "outputPath": "D:\\Elzohary\\IT\\2025 Software Projects\\unifiedContract - Full Project\\unifiedContract-Backend\\UnifiedContract.Application\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,15 +22,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "F:\\Zohary\\Software Development\\full-project\\Backend\\UnifiedContract.Domain\\UnifiedContract.Domain.csproj": {
-                "projectPath": "F:\\Zohary\\Software Development\\full-project\\Backend\\UnifiedContract.Domain\\UnifiedContract.Domain.csproj"
+              "D:\\Elzohary\\IT\\2025 Software Projects\\unifiedContract - Full Project\\unifiedContract-Backend\\UnifiedContract.Domain\\UnifiedContract.Domain.csproj": {
+                "projectPath": "D:\\Elzohary\\IT\\2025 Software Projects\\unifiedContract - Full Project\\unifiedContract-Backend\\UnifiedContract.Domain\\UnifiedContract.Domain.csproj"
               }
             }
           }
@@ -45,11 +40,8 @@
           ]
         },
         "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "all"
-        },
-        "SdkAnalysisLevel": "9.0.100"
+          "enableAudit": "default"
+        }
       },
       "frameworks": {
         "net8.0": {
@@ -88,25 +80,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.115/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "F:\\Zohary\\Software Development\\full-project\\Backend\\UnifiedContract.Domain\\UnifiedContract.Domain.csproj": {
+    "D:\\Elzohary\\IT\\2025 Software Projects\\unifiedContract - Full Project\\unifiedContract-Backend\\UnifiedContract.Domain\\UnifiedContract.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Zohary\\Software Development\\full-project\\Backend\\UnifiedContract.Domain\\UnifiedContract.Domain.csproj",
+        "projectUniqueName": "D:\\Elzohary\\IT\\2025 Software Projects\\unifiedContract - Full Project\\unifiedContract-Backend\\UnifiedContract.Domain\\UnifiedContract.Domain.csproj",
         "projectName": "UnifiedContract.Domain",
-        "projectPath": "F:\\Zohary\\Software Development\\full-project\\Backend\\UnifiedContract.Domain\\UnifiedContract.Domain.csproj",
-        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "F:\\Zohary\\Software Development\\full-project\\Backend\\UnifiedContract.Domain\\obj\\",
+        "projectPath": "D:\\Elzohary\\IT\\2025 Software Projects\\unifiedContract - Full Project\\unifiedContract-Backend\\UnifiedContract.Domain\\UnifiedContract.Domain.csproj",
+        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
+        "outputPath": "D:\\Elzohary\\IT\\2025 Software Projects\\unifiedContract - Full Project\\unifiedContract-Backend\\UnifiedContract.Domain\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -114,7 +102,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -129,11 +116,8 @@
           ]
         },
         "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "all"
-        },
-        "SdkAnalysisLevel": "9.0.100"
+          "enableAudit": "default"
+        }
       },
       "frameworks": {
         "net8.0": {
@@ -160,25 +144,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.115/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "F:\\Zohary\\Software Development\\full-project\\Backend\\UnifiedContract.Infrastructure\\UnifiedContract.Infrastructure.csproj": {
+    "D:\\Elzohary\\IT\\2025 Software Projects\\unifiedContract - Full Project\\unifiedContract-Backend\\UnifiedContract.Infrastructure\\UnifiedContract.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Zohary\\Software Development\\full-project\\Backend\\UnifiedContract.Infrastructure\\UnifiedContract.Infrastructure.csproj",
+        "projectUniqueName": "D:\\Elzohary\\IT\\2025 Software Projects\\unifiedContract - Full Project\\unifiedContract-Backend\\UnifiedContract.Infrastructure\\UnifiedContract.Infrastructure.csproj",
         "projectName": "UnifiedContract.Infrastructure",
-        "projectPath": "F:\\Zohary\\Software Development\\full-project\\Backend\\UnifiedContract.Infrastructure\\UnifiedContract.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "F:\\Zohary\\Software Development\\full-project\\Backend\\UnifiedContract.Infrastructure\\obj\\",
+        "projectPath": "D:\\Elzohary\\IT\\2025 Software Projects\\unifiedContract - Full Project\\unifiedContract-Backend\\UnifiedContract.Infrastructure\\UnifiedContract.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
+        "outputPath": "D:\\Elzohary\\IT\\2025 Software Projects\\unifiedContract - Full Project\\unifiedContract-Backend\\UnifiedContract.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -186,15 +166,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "F:\\Zohary\\Software Development\\full-project\\Backend\\UnifiedContract.Application\\UnifiedContract.Application.csproj": {
-                "projectPath": "F:\\Zohary\\Software Development\\full-project\\Backend\\UnifiedContract.Application\\UnifiedContract.Application.csproj"
+              "D:\\Elzohary\\IT\\2025 Software Projects\\unifiedContract - Full Project\\unifiedContract-Backend\\UnifiedContract.Application\\UnifiedContract.Application.csproj": {
+                "projectPath": "D:\\Elzohary\\IT\\2025 Software Projects\\unifiedContract - Full Project\\unifiedContract-Backend\\UnifiedContract.Application\\UnifiedContract.Application.csproj"
               }
             }
           }
@@ -205,11 +184,8 @@
           ]
         },
         "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "all"
-        },
-        "SdkAnalysisLevel": "9.0.100"
+          "enableAudit": "default"
+        }
       },
       "frameworks": {
         "net8.0": {
@@ -236,7 +212,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.115/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -12,28 +12,43 @@ namespace UnifiedContract.Persistence.Configurations.WorkOrder
 
             builder.HasKey(item => item.Id);
             
-            builder.Property(item => item.Name)
+            builder.Property(item => item.ItemNumber)
                 .IsRequired()
-                .HasMaxLength(200);
+                .HasMaxLength(50);
                 
             builder.Property(item => item.Description)
                 .HasMaxLength(1000);
                 
+            builder.Property(item => item.Unit)
+                .HasMaxLength(50);
+                
             builder.Property(item => item.UnitPrice)
                 .HasPrecision(18, 2);
                 
-            builder.Property(item => item.Quantity)
+            builder.Property(item => item.EstimatedQuantity)
                 .HasPrecision(18, 2);
                 
-            builder.Property(item => item.UnitOfMeasure)
-                .HasMaxLength(50);
+            builder.Property(item => item.EstimatedPrice)
+                .HasPrecision(18, 2);
                 
-            builder.Property(item => item.ItemType)
-                .HasMaxLength(50);
+            builder.Property(item => item.EstimatedPriceWithVAT)
+                .HasPrecision(18, 2);
+                
+            builder.Property(item => item.ActualQuantity)
+                .HasPrecision(18, 2);
+                
+            builder.Property(item => item.ActualPrice)
+                .HasPrecision(18, 2);
+                
+            builder.Property(item => item.ActualPriceWithVAT)
+                .HasPrecision(18, 2);
+                
+            builder.Property(item => item.ReasonForFinalQuantity)
+                .HasMaxLength(500);
                 
             // Relationships
             builder.HasOne<Domain.Entities.WorkOrder.WorkOrder>()
-                .WithMany(wo => wo.WorkOrderItems)
+                .WithMany(wo => wo.Items)
                 .HasForeignKey(item => item.WorkOrderId)
                 .OnDelete(DeleteBehavior.Cascade);
                 

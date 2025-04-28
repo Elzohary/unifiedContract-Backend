@@ -1,4 +1,3 @@
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using UnifiedContract.Domain.Entities.HR;
@@ -14,7 +13,7 @@ namespace UnifiedContract.Persistence.Configurations.HR
             builder.ToTable("Educations", "HR");
             
             // Properties
-            builder.Property(e => e.InstitutionName)
+            builder.Property(e => e.Institution)
                 .IsRequired()
                 .HasMaxLength(100);
                 
@@ -53,12 +52,11 @@ namespace UnifiedContract.Persistence.Configurations.HR
             
             // Indexes
             builder.HasIndex(e => e.EmployeeId);
-            builder.HasIndex(e => e.InstitutionName);
+            builder.HasIndex(e => e.Institution);
             builder.HasIndex(e => e.Degree);
             builder.HasIndex(e => e.FieldOfStudy);
-            builder.HasIndex(e => e.StartDate);
-            builder.HasIndex(e => e.EndDate);
-            builder.HasIndex(e => e.IsCompleted);
+            builder.HasIndex(e => new { e.StartDate, e.EndDate });
+            builder.HasIndex(e => new { e.EmployeeId, e.IsVerified });
             
             // Relationships
             builder.HasOne(e => e.Employee)

@@ -24,6 +24,19 @@ namespace UnifiedContract.Persistence.Configurations.HR
             builder.Property(d => d.Description)
                 .HasMaxLength(500);
             
+            builder.Property(d => d.Location)
+                .HasMaxLength(100);
+            
+            builder.Property(d => d.IsActive)
+                .HasDefaultValue(true);
+            
+            builder.Property(d => d.HeadCount)
+                .HasDefaultValue(0);
+            
+            builder.Property(d => d.Budget)
+                .HasPrecision(18, 2)
+                .HasDefaultValue(0);
+            
             // Indexes
             builder.HasIndex(d => d.Name);
             builder.HasIndex(d => d.Code).IsUnique();
@@ -43,6 +56,12 @@ namespace UnifiedContract.Persistence.Configurations.HR
                 .HasForeignKey(d => d.ParentDepartmentId)
                 .IsRequired(false)
                 .OnDelete(DeleteBehavior.Restrict);
+            
+            // Add missing collection configuration
+            builder.HasMany(d => d.Employees)
+                .WithOne(e => e.Department)
+                .HasForeignKey(e => e.DepartmentId)
+                .OnDelete(DeleteBehavior.SetNull);
             
             // Seed initial departments
             SeedDepartments(builder);

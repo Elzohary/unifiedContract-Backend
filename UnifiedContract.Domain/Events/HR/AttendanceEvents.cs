@@ -72,4 +72,44 @@ namespace UnifiedContract.Domain.Events.HR
             Attendance = attendance;
         }
     }
+
+    public class AttendanceDeletedEvent : DomainEvent
+    {
+        public Attendance Attendance { get; }
+        public string DeletionReason { get; }
+
+        public AttendanceDeletedEvent(Attendance attendance, string deletionReason)
+        {
+            Attendance = attendance;
+            DeletionReason = deletionReason;
+        }
+    }
+
+    public class AttendanceStatusChangedEvent : DomainEvent
+    {
+        public Attendance Attendance { get; }
+        public string PreviousStatus { get; }
+        public string NewStatus { get; }
+
+        public AttendanceStatusChangedEvent(Attendance attendance, string previousStatus, string newStatus)
+        {
+            Attendance = attendance;
+            PreviousStatus = previousStatus;
+            NewStatus = newStatus;
+        }
+    }
+
+    public class AttendanceRegularizedEvent : DomainEvent
+    {
+        public Attendance Attendance { get; }
+        public string RegularizationReason { get; }
+        public string ApprovedBy { get; }
+
+        public AttendanceRegularizedEvent(Attendance attendance, string regularizationReason, string approvedBy)
+        {
+            Attendance = attendance;
+            RegularizationReason = regularizationReason;
+            ApprovedBy = approvedBy;
+        }
+    }
 } 

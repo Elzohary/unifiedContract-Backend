@@ -70,6 +70,16 @@ namespace UnifiedContract.Persistence.Configurations.HR
                 money.Property(m => m.Currency).HasMaxLength(3).HasColumnName("SalaryCurrency").HasDefaultValue("SAR");
             });
             
+            // Add missing property configurations
+            builder.Property(e => e.Age);
+            builder.Property(e => e.WorkTimeRatio)
+                .HasPrecision(5, 2);
+            builder.Property(e => e.MonthlyHours);
+            builder.Property(e => e.AvgLateMinutes)
+                .HasPrecision(5, 2);
+            builder.Property(e => e.SickLeaveCounter);
+            builder.Property(e => e.OffDays);
+            
             // Indexes
             builder.HasIndex(e => e.BadgeNumber).IsUnique();
             builder.HasIndex(e => e.Name);
@@ -144,6 +154,32 @@ namespace UnifiedContract.Persistence.Configurations.HR
             builder.HasMany(e => e.Attendances)
                 .WithOne(a => a.Employee)
                 .HasForeignKey(a => a.EmployeeId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Add missing collection configurations
+            builder.HasMany(e => e.EducationHistory)
+                .WithOne(ed => ed.Employee)
+                .HasForeignKey(ed => ed.EmployeeId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasMany(e => e.PerformanceReviews)
+                .WithOne(pr => pr.Employee)
+                .HasForeignKey(pr => pr.EmployeeId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasMany(e => e.ReviewsGiven)
+                .WithOne(pr => pr.Reviewer)
+                .HasForeignKey(pr => pr.ReviewerId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasMany(e => e.ManagedDepartments)
+                .WithOne(d => d.Manager)
+                .HasForeignKey(d => d.ManagerId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            builder.HasMany(e => e.SalaryHistory)
+                .WithOne(s => s.Employee)
+                .HasForeignKey(s => s.EmployeeId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }

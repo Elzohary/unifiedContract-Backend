@@ -14,19 +14,24 @@ namespace UnifiedContract.Persistence.Configurations.HR
             
             // Properties
             builder.Property(a => a.Date)
-                .IsRequired();
+                .IsRequired()
+                .HasDefaultValueSql("GETDATE()");
                 
             builder.Property(a => a.CheckInTime);
             
             builder.Property(a => a.CheckOutTime);
             
-            builder.Property(a => a.WorkingHours);
+            builder.Property(a => a.WorkingHours)
+                .HasPrecision(5, 2);
             
-            builder.Property(a => a.LateMinutes);
+            builder.Property(a => a.LateMinutes)
+                .HasPrecision(5, 2);
             
-            builder.Property(a => a.EarlyDepartureMinutes);
+            builder.Property(a => a.EarlyDepartureMinutes)
+                .HasPrecision(5, 2);
             
-            builder.Property(a => a.OvertimeHours);
+            builder.Property(a => a.OvertimeHours)
+                .HasPrecision(5, 2);
             
             builder.Property(a => a.Notes)
                 .HasMaxLength(500);
@@ -56,6 +61,8 @@ namespace UnifiedContract.Persistence.Configurations.HR
             builder.HasIndex(a => a.IsAbsent);
             builder.HasIndex(a => a.IsOnLeave);
             builder.HasIndex(a => new { a.EmployeeId, a.Date }).IsUnique();
+            builder.HasIndex(a => a.IsHalfDay);
+            builder.HasIndex(a => new { a.Date, a.IsAbsent });
             
             // Relationships
             builder.HasOne(a => a.Employee)

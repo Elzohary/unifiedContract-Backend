@@ -4122,24 +4122,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\HP\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\DELL\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Zohary\\Software Development\\full-project\\Backend\\UnifiedContract.API\\UnifiedContract.API.csproj",
+      "projectUniqueName": "D:\\Elzohary\\IT\\2025 Software Projects\\unifiedContract - Full Project\\unifiedContract-Backend\\UnifiedContract.API\\UnifiedContract.API.csproj",
       "projectName": "UnifiedContract.API",
-      "projectPath": "F:\\Zohary\\Software Development\\full-project\\Backend\\UnifiedContract.API\\UnifiedContract.API.csproj",
-      "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-      "outputPath": "F:\\Zohary\\Software Development\\full-project\\Backend\\UnifiedContract.API\\obj\\",
+      "projectPath": "D:\\Elzohary\\IT\\2025 Software Projects\\unifiedContract - Full Project\\unifiedContract-Backend\\UnifiedContract.API\\UnifiedContract.API.csproj",
+      "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
+      "outputPath": "D:\\Elzohary\\IT\\2025 Software Projects\\unifiedContract - Full Project\\unifiedContract-Backend\\UnifiedContract.API\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4147,21 +4142,20 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "F:\\Zohary\\Software Development\\full-project\\Backend\\UnifiedContract.Application\\UnifiedContract.Application.csproj": {
-              "projectPath": "F:\\Zohary\\Software Development\\full-project\\Backend\\UnifiedContract.Application\\UnifiedContract.Application.csproj"
+            "D:\\Elzohary\\IT\\2025 Software Projects\\unifiedContract - Full Project\\unifiedContract-Backend\\UnifiedContract.Application\\UnifiedContract.Application.csproj": {
+              "projectPath": "D:\\Elzohary\\IT\\2025 Software Projects\\unifiedContract - Full Project\\unifiedContract-Backend\\UnifiedContract.Application\\UnifiedContract.Application.csproj"
             },
-            "F:\\Zohary\\Software Development\\full-project\\Backend\\UnifiedContract.Infrastructure\\UnifiedContract.Infrastructure.csproj": {
-              "projectPath": "F:\\Zohary\\Software Development\\full-project\\Backend\\UnifiedContract.Infrastructure\\UnifiedContract.Infrastructure.csproj"
+            "D:\\Elzohary\\IT\\2025 Software Projects\\unifiedContract - Full Project\\unifiedContract-Backend\\UnifiedContract.Infrastructure\\UnifiedContract.Infrastructure.csproj": {
+              "projectPath": "D:\\Elzohary\\IT\\2025 Software Projects\\unifiedContract - Full Project\\unifiedContract-Backend\\UnifiedContract.Infrastructure\\UnifiedContract.Infrastructure.csproj"
             },
-            "F:\\Zohary\\Software Development\\full-project\\Backend\\UnifiedContract.Persistence\\UnifiedContract.Persistence.csproj": {
-              "projectPath": "F:\\Zohary\\Software Development\\full-project\\Backend\\UnifiedContract.Persistence\\UnifiedContract.Persistence.csproj"
+            "D:\\Elzohary\\IT\\2025 Software Projects\\unifiedContract - Full Project\\unifiedContract-Backend\\UnifiedContract.Persistence\\UnifiedContract.Persistence.csproj": {
+              "projectPath": "D:\\Elzohary\\IT\\2025 Software Projects\\unifiedContract - Full Project\\unifiedContract-Backend\\UnifiedContract.Persistence\\UnifiedContract.Persistence.csproj"
             }
           }
         }
@@ -4172,11 +4166,8 @@
         ]
       },
       "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "all"
-      },
-      "SdkAnalysisLevel": "9.0.100"
+        "enableAudit": "default"
+      }
     },
     "frameworks": {
       "net8.0": {
@@ -4210,7 +4201,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.115/PortableRuntimeIdentifierGraph.json"
       }
     }
   },

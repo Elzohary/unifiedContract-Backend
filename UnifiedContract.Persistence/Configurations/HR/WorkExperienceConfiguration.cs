@@ -45,14 +45,19 @@ namespace UnifiedContract.Persistence.Configurations.HR
                 
             builder.Property(w => w.ReasonForLeaving)
                 .HasMaxLength(500);
+
+            builder.Property(w => w.StartDate)
+                .IsRequired();
+
+            builder.Property(w => w.EndDate);
             
             // Indexes
             builder.HasIndex(w => w.EmployeeId);
             builder.HasIndex(w => w.CompanyName);
             builder.HasIndex(w => w.Position);
-            builder.HasIndex(w => w.StartDate);
-            builder.HasIndex(w => w.EndDate);
+            builder.HasIndex(w => new { w.StartDate, w.EndDate });
             builder.HasIndex(w => w.IsCurrentEmployer);
+            builder.HasIndex(w => new { w.EmployeeId, w.IsCurrentEmployer });
             
             // Relationships
             builder.HasOne(w => w.Employee)

@@ -13,10 +13,17 @@ namespace UnifiedContract.Domain.Entities.Auth
         public string FullName { get; set; }
         public string Avatar { get; set; }
         public bool IsActive { get; set; }
-        public UserRole Role { get; set; }
         public bool IsEmployee { get; set; }
         public Guid? EmployeeId { get; set; }
 
-        // Navigation properties will be defined in the configurations
+        // Navigation properties
+        public virtual ICollection<Role> Roles { get; set; }
+        public virtual ICollection<UserRole> UserRoles { get; set; }
+
+        public User()
+        {
+            Roles = new HashSet<Role>();
+            UserRoles = new HashSet<UserRole>();
+        }
     }
 } 
