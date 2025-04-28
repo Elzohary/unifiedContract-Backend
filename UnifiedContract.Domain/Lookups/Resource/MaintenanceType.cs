@@ -24,6 +24,11 @@ namespace UnifiedContract.Domain.Entities.Resource.Lookups
         public int? TypicalDurationHours { get; set; }
         
         /// <summary>
+        /// Typical interval in days between maintenance of this type
+        /// </summary>
+        public int? TypicalIntervalDays { get; set; }
+        
+        /// <summary>
         /// Color code for UI representation (hex or named color)
         /// </summary>
         public string ColorCode { get; set; }

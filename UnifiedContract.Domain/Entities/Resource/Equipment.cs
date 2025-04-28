@@ -34,8 +34,8 @@ namespace UnifiedContract.Domain.Entities.Resource
         
         // Navigation properties
         public virtual EquipmentStatus Status { get; private set; }
-        public virtual Employee CurrentOperator { get; private set; }
-        public virtual Supplier Supplier { get; private set; }
+        public virtual Employee? CurrentOperator { get; private set; }
+        public virtual Supplier? Supplier { get; private set; }
         
         // Public properties with private setters
         public string CompanyNumber => _companyNumber;
@@ -97,15 +97,15 @@ namespace UnifiedContract.Domain.Entities.Resource
         }
         
         public void UpdateDetails(
-            string name = null,
-            string type = null,
-            string model = null,
-            string manufacturer = null,
+            string? name = null,
+            string? type = null,
+            string? model = null,
+            string? manufacturer = null,
             decimal? dailyCost = null,
-            string currency = null,
-            string currentLocation = null,
-            string description = null,
-            string imageUrl = null)
+            string? currency = null,
+            string? currentLocation = null,
+            string? description = null,
+            string? imageUrl = null)
         {
             bool changed = false;
             
@@ -125,6 +125,7 @@ namespace UnifiedContract.Domain.Entities.Resource
             
             if (model != null && model != _model)
             {
+                ValidateModel(model);
                 _model = model;
                 changed = true;
             }
@@ -135,7 +136,7 @@ namespace UnifiedContract.Domain.Entities.Resource
                 changed = true;
             }
             
-            if (dailyCost.HasValue && dailyCost != _dailyCost)
+            if (dailyCost.HasValue && dailyCost.Value != _dailyCost)
             {
                 ValidateDailyCost(dailyCost.Value);
                 _dailyCost = dailyCost.Value;
@@ -233,9 +234,9 @@ namespace UnifiedContract.Domain.Entities.Resource
                 _lastMaintenanceDate = maintenance.CompletedDate ?? maintenance.ScheduledDate;
                 
                 // Optionally schedule next maintenance based on maintenance type
-                if (maintenance.CompletedDate.HasValue && maintenance.Type != null && maintenance.Type.TypicalIntervalDays > 0)
+                if (maintenance.CompletedDate.HasValue && maintenance.Type != null && maintenance.Type.TypicalIntervalDays.HasValue && maintenance.Type.TypicalIntervalDays.Value > 0)
                 {
-                    _nextMaintenanceDate = maintenance.CompletedDate.Value.AddDays(maintenance.Type.TypicalIntervalDays);
+                    _nextMaintenanceDate = maintenance.CompletedDate.Value.AddDays((double)maintenance.Type.TypicalIntervalDays.Value);
                 }
             }
         }

@@ -10,18 +10,18 @@ namespace UnifiedContract.Domain.Entities.Resource
 {
     public class Supplier : BaseEntity
     {
-        private string _name;
-        private string _contactPerson;
-        private string _email;
-        private string _phone;
-        private string _alternatePhone;
+        private string _name = string.Empty;
+        private string _contactPerson = string.Empty;
+        private string _email = string.Empty;
+        private string _phone = string.Empty;
+        private string _alternatePhone = string.Empty;
         private Address _address;
-        private string _website;
-        private string _vatNumber;
-        private string _paymentTerms;
-        private string _bankAccount;
+        private string _website = string.Empty;
+        private string _vatNumber = string.Empty;
+        private string _paymentTerms = string.Empty;
+        private string _bankAccount = string.Empty;
         private bool _isActive = true;
-        private string _notes;
+        private string _notes = string.Empty;
         private decimal _rating;
         private readonly HashSet<PurchasableMaterial> _materials = new HashSet<PurchasableMaterial>();
         private readonly HashSet<Equipment> _equipment = new HashSet<Equipment>();
@@ -59,12 +59,12 @@ namespace UnifiedContract.Domain.Entities.Resource
             string phone,
             Address address,
             Guid? categoryId = null,
-            string alternatePhone = null,
-            string website = null,
-            string vatNumber = null,
-            string paymentTerms = null,
-            string bankAccount = null,
-            string notes = null)
+            string? alternatePhone = null,
+            string? website = null,
+            string? vatNumber = null,
+            string? paymentTerms = null,
+            string? bankAccount = null,
+            string? notes = null)
         {
             ValidateSupplier(name, email, phone);
             
@@ -72,13 +72,13 @@ namespace UnifiedContract.Domain.Entities.Resource
             _contactPerson = contactPerson;
             _email = email;
             _phone = phone;
-            _address = address ?? new Address();
-            _alternatePhone = alternatePhone;
-            _website = website;
-            _vatNumber = vatNumber;
-            _paymentTerms = paymentTerms;
-            _bankAccount = bankAccount;
-            _notes = notes;
+            _address = address;
+            _alternatePhone = alternatePhone ?? string.Empty;
+            _website = website ?? string.Empty;
+            _vatNumber = vatNumber ?? string.Empty;
+            _paymentTerms = paymentTerms ?? string.Empty;
+            _bankAccount = bankAccount ?? string.Empty;
+            _notes = notes ?? string.Empty;
             _rating = 0;
             CategoryId = categoryId;
             
@@ -86,17 +86,17 @@ namespace UnifiedContract.Domain.Entities.Resource
         }
         
         public void UpdateDetails(
-            string name = null,
-            string contactPerson = null,
-            string email = null,
-            string phone = null,
-            Address address = null,
-            string alternatePhone = null,
-            string website = null,
-            string vatNumber = null,
-            string paymentTerms = null,
-            string bankAccount = null,
-            string notes = null)
+            string? name = null,
+            string? contactPerson = null,
+            string? email = null,
+            string? phone = null,
+            Address? address = null,
+            string? alternatePhone = null,
+            string? website = null,
+            string? vatNumber = null,
+            string? paymentTerms = null,
+            string? bankAccount = null,
+            string? notes = null)
         {
             bool changed = false;
             

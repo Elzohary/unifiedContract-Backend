@@ -4,6 +4,7 @@ using UnifiedContract.Domain.Common;
 using UnifiedContract.Domain.Entities.Common;
 using UnifiedContract.Domain.Entities.Resource;
 using UnifiedContract.Domain.Events.Resource;
+using UnifiedContract.Domain.Events.Common;
 using UnifiedContract.Domain.Exceptions;
 
 namespace UnifiedContract.Domain.Entities.Resource.Lookups
@@ -54,7 +55,7 @@ namespace UnifiedContract.Domain.Entities.Resource.Lookups
             bool requiresVatNumber, 
             decimal defaultCreditDays, 
             bool requiresContractReview,
-            string colorCode = null)
+            string? colorCode = null)
         {
             ValidateCodeAndName(code, name);
             ValidateDefaultCreditDays(defaultCreditDays);
@@ -65,7 +66,7 @@ namespace UnifiedContract.Domain.Entities.Resource.Lookups
             _requiresVatNumber = requiresVatNumber;
             _defaultCreditDays = defaultCreditDays;
             _requiresContractReview = requiresContractReview;
-            _colorCode = colorCode;
+            _colorCode = colorCode ?? string.Empty;
             
             IsActive = true;
             
@@ -76,7 +77,7 @@ namespace UnifiedContract.Domain.Entities.Resource.Lookups
             bool? requiresVatNumber = null, 
             decimal? defaultCreditDays = null, 
             bool? requiresContractReview = null, 
-            string colorCode = null)
+            string? colorCode = null)
         {
             bool changed = false;
             

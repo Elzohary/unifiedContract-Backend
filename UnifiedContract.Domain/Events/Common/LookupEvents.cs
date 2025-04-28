@@ -4,21 +4,21 @@ using UnifiedContract.Domain.Entities.Common;
 
 namespace UnifiedContract.Domain.Events.Common
 {
-    public class LookupUpdatedEvent : DomainEvent
-    {
-        public Lookup Lookup { get; }
-
-        public LookupUpdatedEvent(Lookup lookup)
-        {
-            Lookup = lookup;
-        }
-    }
-    
     public class LookupCreatedEvent : DomainEvent
     {
         public Lookup Lookup { get; }
 
         public LookupCreatedEvent(Lookup lookup)
+        {
+            Lookup = lookup;
+        }
+    }
+    
+    public class LookupUpdatedEvent : DomainEvent
+    {
+        public Lookup Lookup { get; }
+
+        public LookupUpdatedEvent(Lookup lookup)
         {
             Lookup = lookup;
         }

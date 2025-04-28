@@ -4,6 +4,7 @@ using UnifiedContract.Domain.Common;
 using UnifiedContract.Domain.Entities.Common;
 using UnifiedContract.Domain.Entities.Resource;
 using UnifiedContract.Domain.Events.Resource;
+using UnifiedContract.Domain.Events.Common;
 using UnifiedContract.Domain.Exceptions;
 
 namespace UnifiedContract.Domain.Entities.Resource.Lookups
@@ -54,7 +55,7 @@ namespace UnifiedContract.Domain.Entities.Resource.Lookups
             bool canBeAssigned, 
             bool incursCost, 
             bool isOperational, 
-            string colorCode = null)
+            string? colorCode = null)
         {
             ValidateCodeAndName(code, name);
             
@@ -64,7 +65,7 @@ namespace UnifiedContract.Domain.Entities.Resource.Lookups
             _canBeAssigned = canBeAssigned;
             _incursCost = incursCost;
             _isOperational = isOperational;
-            _colorCode = colorCode;
+            _colorCode = colorCode ?? string.Empty;
             
             IsActive = true;
         }
@@ -73,7 +74,7 @@ namespace UnifiedContract.Domain.Entities.Resource.Lookups
             bool? canBeAssigned = null, 
             bool? incursCost = null, 
             bool? isOperational = null, 
-            string colorCode = null)
+            string? colorCode = null)
         {
             if (canBeAssigned.HasValue && canBeAssigned.Value != _canBeAssigned)
             {

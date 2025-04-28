@@ -100,10 +100,10 @@ namespace UnifiedContract.Domain.Entities.Auth
         private static void SeedMaintenanceTypes(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<MaintenanceType>().HasData(
-                CreateLookup<MaintenanceType>(1, "ROUTINE", "Routine", "Regular scheduled maintenance", true, false, 4, "#008000"),
-                CreateLookup<MaintenanceType>(2, "REPAIR", "Repair", "Repair of damaged equipment", false, true, 8, "#FF0000"),
-                CreateLookup<MaintenanceType>(3, "INSPECTION", "Inspection", "Safety or quality inspection", true, false, 2, "#0000FF"),
-                CreateLookup<MaintenanceType>(4, "EMERGENCY", "Emergency", "Urgent unplanned maintenance", false, true, 12, "#8B0000")
+                CreateLookup<MaintenanceType>(1, "ROUTINE", "Routine", "Regular scheduled maintenance", true, false, 4, 90, "#008000"),
+                CreateLookup<MaintenanceType>(2, "REPAIR", "Repair", "Repair of damaged equipment", false, true, 8, null, "#FF0000"),
+                CreateLookup<MaintenanceType>(3, "INSPECTION", "Inspection", "Safety or quality inspection", true, false, 2, 30, "#0000FF"),
+                CreateLookup<MaintenanceType>(4, "EMERGENCY", "Emergency", "Urgent unplanned maintenance", false, true, 12, null, "#8B0000")
             );
         }
 
@@ -138,87 +138,113 @@ namespace UnifiedContract.Domain.Entities.Auth
 
         #region Helper Methods for Creating Lookup Entities
 
-        private static T CreateLookup<T>(int id, string code, string name, string description, params object[] specificProps) where T : Lookup, new()
+        private static T CreateLookup<T>(int id, string code, string name, string description, params object?[] specificProps) where T : Lookup, new()
         {
-            T lookup = new T
+            var lookup = new T
             {
-                Id = new Guid($"00000000-0000-0000-0000-{id:D12}"),
+                Id = new Guid(id, 0, 0, new byte[8]),  // Convert int to Guid
                 Code = code,
                 Name = name,
-                Description = description,
-                IsActive = true,
-                DisplayOrder = id
+                Description = description
             };
 
-            // Set specific properties for each lookup type
             if (typeof(T) == typeof(WorkOrderStatus) && specificProps.Length >= 3)
             {
-                ((WorkOrderStatus)(object)lookup).IsCompleted = (bool)specificProps[0];
-                ((WorkOrderStatus)(object)lookup).AllowsEditing = (bool)specificProps[1];
-                ((WorkOrderStatus)(object)lookup).RequiresApproval = (bool)specificProps[2];
-                if (specificProps.Length > 3) ((WorkOrderStatus)(object)lookup).ColorCode = (string)specificProps[3];
+                ((WorkOrderStatus)(object)lookup).IsCompleted = (bool)specificProps[0]!;
+                ((WorkOrderStatus)(object)lookup).AllowsEditing = (bool)specificProps[1]!;
+                ((WorkOrderStatus)(object)lookup).RequiresApproval = (bool)specificProps[2]!;
+                if (specificProps.Length > 3 && specificProps[3] != null) 
+                    ((WorkOrderStatus)(object)lookup).ColorCode = (string)specificProps[3]!;
             }
             else if (typeof(T) == typeof(PriorityLevel) && specificProps.Length >= 3)
             {
-                ((PriorityLevel)(object)lookup).SeverityValue = (int)specificProps[0];
-                ((PriorityLevel)(object)lookup).ColorCode = (string)specificProps[1];
-                ((PriorityLevel)(object)lookup).TargetResponseHours = (int)specificProps[2];
-                if (specificProps.Length > 3) ((PriorityLevel)(object)lookup).RequiresImmediateNotification = (bool)specificProps[3];
+                ((PriorityLevel)(object)lookup).SeverityValue = (int)specificProps[0]!;
+                ((PriorityLevel)(object)lookup).ColorCode = (string)specificProps[1]!;
+                ((PriorityLevel)(object)lookup).TargetResponseHours = (int)specificProps[2]!;
+                if (specificProps.Length > 3)
+                    ((PriorityLevel)(object)lookup).RequiresImmediateNotification = (bool)specificProps[3]!;
             }
             else if (typeof(T) == typeof(IssueStatus) && specificProps.Length >= 2)
             {
-                ((IssueStatus)(object)lookup).IsResolved = (bool)specificProps[0];
-                ((IssueStatus)(object)lookup).AllowsEditing = (bool)specificProps[1];
-                if (specificProps.Length > 2) ((IssueStatus)(object)lookup).ColorCode = (string)specificProps[2];
+                ((IssueStatus)(object)lookup).IsResolved = (bool)specificProps[0]!;
+                ((IssueStatus)(object)lookup).AllowsEditing = (bool)specificProps[1]!;
+                if (specificProps.Length > 2 && specificProps[2] != null)
+                    ((IssueStatus)(object)lookup).ColorCode = (string)specificProps[2]!;
             }
-            else if (typeof(T) == typeof(LeaveType) && specificProps.Length >= 3)
+            else if (typeof(T) == typeof(LeaveType) && specificProps.Length >= 5)
             {
-                ((LeaveType)(object)lookup).DefaultDaysPerYear = (int)specificProps[0];
-                ((LeaveType)(object)lookup).RequiresDocumentation = (bool)specificProps[1];
-                ((LeaveType)(object)lookup).IsPaid = (bool)specificProps[2];
-                if (specificProps.Length > 3) ((LeaveType)(object)lookup).MaxConsecutiveDays = (int?)specificProps[3];
-                if (specificProps.Length > 4) ((LeaveType)(object)lookup).MinimumNoticeDays = (int?)specificProps[4];
+                ((LeaveType)(object)lookup).DefaultDaysPerYear = (int)specificProps[0]!;
+                ((LeaveType)(object)lookup).RequiresDocumentation = (bool)specificProps[1]!;
+                ((LeaveType)(object)lookup).IsPaid = (bool)specificProps[2]!;
+                if (specificProps[3] != null)
+                    ((LeaveType)(object)lookup).MaxConsecutiveDays = (int)specificProps[3]!;
+                if (specificProps[4] != null)
+                    ((LeaveType)(object)lookup).MinimumNoticeDays = (int)specificProps[4]!;
             }
-            else if (typeof(T) == typeof(LeaveStatus) && specificProps.Length >= 3)
+            else if (typeof(T) == typeof(LeaveStatus) && specificProps.Length >= 2)
             {
-                ((LeaveStatus)(object)lookup).IsFinalState = (bool)specificProps[0];
-                ((LeaveStatus)(object)lookup).DeductsFromBalance = (bool)specificProps[1];
-                ((LeaveStatus)(object)lookup).AllowsEditing = (bool)specificProps[2];
-                if (specificProps.Length > 3) ((LeaveStatus)(object)lookup).ColorCode = (string)specificProps[3];
+                ((LeaveStatus)(object)lookup).IsFinalState = (bool)specificProps[0]!;
+                ((LeaveStatus)(object)lookup).DeductsFromBalance = (bool)specificProps[1]!;
+                if (specificProps.Length > 2 && specificProps[2] != null)
+                    ((LeaveStatus)(object)lookup).AllowsEditing = (bool)specificProps[2]!;
+                if (specificProps.Length > 3 && specificProps[3] != null)
+                    ((LeaveStatus)(object)lookup).ColorCode = (string)specificProps[3]!;
             }
             else if (typeof(T) == typeof(EquipmentStatus) && specificProps.Length >= 3)
             {
-                ((EquipmentStatus)(object)lookup).CanBeAssigned = (bool)specificProps[0];
-                ((EquipmentStatus)(object)lookup).IncursCost = (bool)specificProps[1];
-                ((EquipmentStatus)(object)lookup).IsOperational = (bool)specificProps[2];
-                if (specificProps.Length > 3) ((EquipmentStatus)(object)lookup).ColorCode = (string)specificProps[3];
+                var equipmentStatus = new EquipmentStatus(
+                    code: code,
+                    name: name,
+                    description: description,
+                    canBeAssigned: (bool)specificProps[0]!,
+                    incursCost: (bool)specificProps[1]!,
+                    isOperational: (bool)specificProps[2]!,
+                    colorCode: specificProps.Length > 3 ? (string)specificProps[3]! : null
+                );
+                equipmentStatus.Id = new Guid(id, 0, 0, new byte[8]);  // Set the ID after creation
+                lookup = (T)(object)equipmentStatus;
             }
-            else if (typeof(T) == typeof(MaintenanceType) && specificProps.Length >= 3)
+            else if (typeof(T) == typeof(MaintenanceType) && specificProps.Length >= 1)
             {
-                ((MaintenanceType)(object)lookup).IsScheduled = (bool)specificProps[0];
-                ((MaintenanceType)(object)lookup).RequiresOutOfService = (bool)specificProps[1];
-                ((MaintenanceType)(object)lookup).TypicalDurationHours = (int)specificProps[2];
-                if (specificProps.Length > 3) ((MaintenanceType)(object)lookup).ColorCode = (string)specificProps[3];
+                var maintenanceType = (MaintenanceType)(object)lookup;
+                maintenanceType.IsScheduled = (bool)specificProps[0]!;
+                if (specificProps.Length > 1 && specificProps[1] != null)
+                    maintenanceType.RequiresOutOfService = (bool)specificProps[1]!;
+                if (specificProps.Length > 2 && specificProps[2] != null)
+                    maintenanceType.TypicalDurationHours = (int)specificProps[2]!;
+                if (specificProps.Length > 3 && specificProps[3] != null)
+                    maintenanceType.TypicalIntervalDays = (int)specificProps[3]!;
+                if (specificProps.Length > 4 && specificProps[4] != null)
+                    maintenanceType.ColorCode = (string)specificProps[4]!;
             }
             else if (typeof(T) == typeof(MaintenanceStatus) && specificProps.Length >= 2)
             {
-                ((MaintenanceStatus)(object)lookup).IsFinalState = (bool)specificProps[0];
-                ((MaintenanceStatus)(object)lookup).AllowsEditing = (bool)specificProps[1];
-                if (specificProps.Length > 2) ((MaintenanceStatus)(object)lookup).ColorCode = (string)specificProps[2];
+                var maintenanceStatus = (MaintenanceStatus)(object)lookup;
+                maintenanceStatus.IsFinalState = (bool)specificProps[0]!;
+                maintenanceStatus.AllowsEditing = (bool)specificProps[1]!;
+                if (specificProps.Length > 2 && specificProps[2] != null)
+                    maintenanceStatus.ColorCode = (string)specificProps[2]!;
             }
-            else if (typeof(T) == typeof(MaterialType) && specificProps.Length >= 3)
+            else if (typeof(T) == typeof(MaterialType) && specificProps.Length >= 4)
             {
-                ((MaterialType)(object)lookup).IsPurchasable = (bool)specificProps[0];
-                ((MaterialType)(object)lookup).IsReceivable = (bool)specificProps[1];
-                ((MaterialType)(object)lookup).RequiresTracking = (bool)specificProps[2];
-                if (specificProps.Length > 3) ((MaterialType)(object)lookup).HasCost = (bool)specificProps[3];
+                ((MaterialType)(object)lookup).IsPurchasable = (bool)specificProps[0]!;
+                ((MaterialType)(object)lookup).IsReceivable = (bool)specificProps[1]!;
+                ((MaterialType)(object)lookup).RequiresTracking = (bool)specificProps[2]!;
+                ((MaterialType)(object)lookup).HasCost = (bool)specificProps[3]!;
             }
             else if (typeof(T) == typeof(SupplierCategory) && specificProps.Length >= 3)
             {
-                ((SupplierCategory)(object)lookup).RequiresVatNumber = (bool)specificProps[0];
-                ((SupplierCategory)(object)lookup).DefaultCreditDays = (decimal)specificProps[1];
-                ((SupplierCategory)(object)lookup).RequiresContractReview = (bool)specificProps[2];
-                if (specificProps.Length > 3) ((SupplierCategory)(object)lookup).ColorCode = (string)specificProps[3];
+                var supplierCategory = new SupplierCategory(
+                    code: code,
+                    name: name,
+                    description: description,
+                    requiresVatNumber: (bool)specificProps[0]!,
+                    defaultCreditDays: (decimal)specificProps[1]!,
+                    requiresContractReview: (bool)specificProps[2]!,
+                    colorCode: specificProps.Length > 3 ? (string)specificProps[3]! : null
+                );
+                supplierCategory.Id = new Guid(id, 0, 0, new byte[8]);  // Set the ID after creation
+                lookup = (T)(object)supplierCategory;
             }
 
             return lookup;
