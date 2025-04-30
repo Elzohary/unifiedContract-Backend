@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using UnifiedContract.Domain.Entities.Common;
+using UnifiedContract.Domain.Entities.Auth;
 using UnifiedContract.Persistence.Configurations.Common;
 
 namespace UnifiedContract.Persistence.Configurations.Common
@@ -42,7 +43,7 @@ namespace UnifiedContract.Persistence.Configurations.Common
             builder.HasIndex(e => new { e.UploadDate, e.UploadedById });
             
             // Relationships
-            builder.HasOne<User>(e => e.UploadedBy)
+            builder.HasOne<User>()
                 .WithMany()
                 .HasForeignKey(e => e.UploadedById)
                 .OnDelete(DeleteBehavior.Restrict);

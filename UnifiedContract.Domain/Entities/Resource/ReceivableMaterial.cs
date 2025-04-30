@@ -8,7 +8,7 @@ namespace UnifiedContract.Domain.Entities.Resource
 {
     public class ReceivableMaterial : BaseEntity
     {
-        private string _name;
+        private string? _name;
         private string _description;
         private string _unit;
         private decimal _estimatedQuantity;
@@ -29,12 +29,14 @@ namespace UnifiedContract.Domain.Entities.Resource
         public Guid? ReturnedById { get; private set; }
         public Guid? WorkOrderId { get; private set; }
         public Guid? MaterialTypeId { get; private set; }
+        public Guid? ClientMaterialId { get; private set; }
         
         // Navigation properties
         public virtual HR.Employee ReceivedBy { get; private set; }
         public virtual HR.Employee ReturnedBy { get; private set; }
         public virtual WorkOrder.WorkOrder WorkOrder { get; private set; }
         public virtual Lookups.MaterialType MaterialType { get; private set; }
+        public virtual ClientMaterial ClientMaterial { get; private set; }
         
         // Public properties with private setters
         public string Name => _name;
@@ -58,6 +60,7 @@ namespace UnifiedContract.Domain.Entities.Resource
             string unit,
             Guid? workOrderId = null,
             Guid? materialTypeId = null,
+            Guid? clientMaterialId = null,
             string sourceLocation = null,
             string notes = null)
         {
@@ -69,12 +72,33 @@ namespace UnifiedContract.Domain.Entities.Resource
             _unit = unit ?? "Units";
             WorkOrderId = workOrderId;
             MaterialTypeId = materialTypeId;
+            ClientMaterialId = clientMaterialId;
             _sourceLocation = sourceLocation;
             _notes = notes;
             
             Status = MaterialStatus.Pending;
             
             AddDomainEvent(new ReceivableMaterialCreatedEvent(this));
+        }
+        
+        // Method to create ReceivableMaterial from ClientMaterial
+        public static ReceivableMaterial FromClientMaterial(
+            ClientMaterial clientMaterial,
+            decimal estimatedQuantity,
+            Guid? workOrderId = null,
+            string sourceLocation = null,
+            string notes = null)
+        {
+            return new ReceivableMaterial(
+                clientMaterial.MaterialMasterCode,
+                clientMaterial.Description,
+                estimatedQuantity,
+                clientMaterial.Unit,
+                workOrderId,
+                null, // MaterialTypeId
+                clientMaterial.Id,
+                sourceLocation,
+                notes);
         }
         
         public void UpdateDetails(

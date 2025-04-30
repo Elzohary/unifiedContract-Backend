@@ -43,6 +43,7 @@ namespace UnifiedContract.Persistence
         public DbSet<MaterialAssignment> MaterialAssignments { get; set; }
         public DbSet<PurchasableMaterial> PurchasableMaterials { get; set; }
         public DbSet<ReceivableMaterial> ReceivableMaterials { get; set; }
+        public DbSet<ClientMaterial> ClientMaterials { get; set; }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
@@ -52,10 +53,10 @@ namespace UnifiedContract.Persistence
                 {
                     case EntityState.Added:
                         entry.Entity.Id = entry.Entity.Id == Guid.Empty ? Guid.NewGuid() : entry.Entity.Id;
-                        entry.Entity.CreatedDate = DateTime.UtcNow;
+                        entry.Entity.CreatedAt = DateTime.UtcNow;
                         break;
                     case EntityState.Modified:
-                        entry.Entity.LastModifiedDate = DateTime.UtcNow;
+                        entry.Entity.LastModifiedAt = DateTime.UtcNow;
                         break;
                 }
             }

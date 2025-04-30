@@ -24,14 +24,14 @@ namespace UnifiedContract.Persistence.Configurations.Common
             builder.Property(e => e.CreatedBy)
                 .HasMaxLength(100);
                 
-            builder.Property(e => e.CreatedDate)
+            builder.Property(e => e.CreatedAt)
                 .IsRequired()
                 .HasDefaultValueSql("GETUTCDATE()");
                 
             builder.Property(e => e.LastModifiedBy)
                 .HasMaxLength(100);
                 
-            builder.Property(e => e.LastModifiedDate)
+            builder.Property(e => e.LastModifiedAt)
                 .HasDefaultValueSql("GETUTCDATE()");
                 
             // Implement additional entity configuration in derived classes

@@ -30,16 +30,6 @@ namespace UnifiedContract.Persistence.Configurations.HR
                 
             builder.Property(e => e.EndDate);
                 
-            builder.Property(e => e.GPA)
-                .HasColumnType("decimal(3,2)");
-                
-            builder.Property(e => e.Location)
-                .HasMaxLength(100);
-                
-            builder.Property(e => e.IsCompleted)
-                .IsRequired()
-                .HasDefaultValue(false);
-                
             builder.Property(e => e.Description)
                 .HasMaxLength(1000);
                 

@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using UnifiedContract.Domain.Entities.Auth;
+using UnifiedContract.Domain.Entities.HR;
 
 namespace UnifiedContract.Persistence.Configurations.Auth
 {

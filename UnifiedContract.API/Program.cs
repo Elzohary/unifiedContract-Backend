@@ -4,8 +4,10 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using System.Text;
+using UnifiedContract.API.Mapping;
 using UnifiedContract.API.Middleware;
 using UnifiedContract.Application;
+using UnifiedContract.Application.Interfaces;
 using UnifiedContract.Domain.Interfaces.Repositories;
 using UnifiedContract.Infrastructure;
 using UnifiedContract.Persistence;
@@ -24,6 +26,9 @@ builder.Host.UseSerilog();
 // Add services to the container.
 builder.Services.AddControllers();
 
+// Configure AutoMapper
+builder.Services.AddAutoMapper(typeof(MappingProfile));
+
 // Configure DbContext
 builder.Services.AddDbContext<UnifiedContractDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -32,6 +37,7 @@ builder.Services.AddDbContext<UnifiedContractDbContext>(options =>
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IWorkOrderRepository, WorkOrderRepository>();
+builder.Services.AddScoped<IClientMaterialRepository, ClientMaterialRepository>();
 
 // Configure JWT Authentication
 builder.Services.AddAuthentication(options =>

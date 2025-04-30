@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using UnifiedContract.Domain.Entities.Common;
+using UnifiedContract.Domain.Entities.Auth;
 using UnifiedContract.Persistence.Configurations.Common;
 
 namespace UnifiedContract.Persistence.Configurations.Common
@@ -41,12 +42,12 @@ namespace UnifiedContract.Persistence.Configurations.Common
             // Indexes
             builder.HasIndex(e => e.UserId);
             builder.HasIndex(e => e.IsRead);
-            builder.HasIndex(e => e.CreatedDate);
+            builder.HasIndex(e => e.CreatedAt);
             builder.HasIndex(e => new { e.UserId, e.IsRead });
             builder.HasIndex(e => new { e.EntityId, e.EntityType });
             
             // Relationships
-            builder.HasOne<User>(e => e.User)
+            builder.HasOne(e => e.User)
                 .WithMany()
                 .HasForeignKey(e => e.UserId)
                 .OnDelete(DeleteBehavior.Cascade);

@@ -40,7 +40,7 @@ namespace UnifiedContract.Persistence.Configurations.Common
             builder.HasIndex(e => e.UserId);
             builder.HasIndex(e => e.EntityType);
             builder.HasIndex(e => e.EntityId);
-            builder.HasIndex(e => e.CreatedDate);
+            builder.HasIndex(e => e.CreatedAt);
             builder.HasIndex(e => new { e.EntityType, e.EntityId });
         }
     }
